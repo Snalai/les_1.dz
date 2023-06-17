@@ -26,7 +26,6 @@ public class homework2 {
             if (a < 0 ) sum += b;
             b = scanner.nextInt();
             if (b < 0 ) sum += a;
-
         }
         return sum;
     }
