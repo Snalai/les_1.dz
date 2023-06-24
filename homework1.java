@@ -1,29 +1,28 @@
-package org.example.lesson1.HomeWork;
+package org.example.lesson3.HomeWork.HomeWork1;
 
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
-public class homework1 {
+public class Main {
     public static void main(String[] args) {
-        System.out.println("Введите текст: ");
-        Scanner scanner = new Scanner(System.in);
-        String t = scanner.nextLine();
-        System.out.println("Было = " + t);
-        System.out.println("Стало = " + domzadanie1(t));
-    }
+        HomeWork1 homeWork1 = new HomeWork1("Мясо курица высший", 5, 1);
+        HomeWork1 homeWork2 = new HomeWork1("Мясо говядина высший", 10, 2);
+        HomeWork1 homeWork3 = new HomeWork1("низший слон", 15, 2);
+        List<HomeWork1> homeWork1List = new ArrayList<>();
+        homeWork1List.add(homeWork1);
+        homeWork1List.add(homeWork2);
+        homeWork1List.add(homeWork3);
+        int h_price = homeWork1List.get(0).getPrice();
+        for (int i = 0; i < homeWork1List.size(); i++) {
+            if (homeWork1List.get(i).getName().contains("высший")
+                    & (homeWork1List.get(i).getGrade() == 1
+                    | homeWork1List.get(i).getGrade() == 2)) {
+                if (h_price < homeWork1List.get(i).getPrice()) {
+                    h_price = homeWork1List.get(i).getPrice();
+                }
+            }
 
-    /**
-     * При наличии входной строки измените порядок слов на противоположный.
-     *
-     * @param t входная строка
-     * @return изменяет порядок слов на противоположный
-     */
-    private static String domzadanie1(String t) {
-        t.trim();
-        String[] words = t.split(" ");
-        int length = 0;
-        String a = "";
-        for (String element : words) length++;
-        for (int i = length - 1; i >= 0; i--) a = a.trim() + " " + words[i];
-        return a;
+        }
+        System.out.println(h_price);
     }
 }

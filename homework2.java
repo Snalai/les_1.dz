@@ -1,32 +1,42 @@
-package org.example.lesson1.HomeWork;
+package org.example.lesson3.HomeWork.HomeWork2;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
-public class homework2 {
+public class Main {
     public static void main(String[] args) {
-        System.out.println("Сколько желаете ввести чисел?");
+        HomeWork2 homeWork1 = new HomeWork2("яблоки", "Россия", 5, 6, 1);
+        HomeWork2 homeWork2 = new HomeWork2("яблоки", "Германия", 10, 20, 1);
+        HomeWork2 homeWork3 = new HomeWork2("груши", "Франция", 15, 30, 2);
+        HomeWork2 homeWork4 = new HomeWork2("персики", "Китай", 20, 50, 1);
+        List<HomeWork2> homeWork2List = new ArrayList<>();
+        homeWork2List.add(homeWork1);
+        homeWork2List.add(homeWork2);
+        homeWork2List.add(homeWork3);
+        homeWork2List.add(homeWork4);
         Scanner scanner = new Scanner(System.in);
-        int n = scanner.nextInt();
-        System.out.println("Сумма положительных чисел, после которых следует отрицательное число = " + domzadanie2(n, scanner));
-    }
-
-    /**
-     * Дана последовательность целых чисел, оканчивающаяся нулем. Найти сумму положительных чисел, после которых следует отрицательное число.
-     * Пример ввода:
-     * 1 2 1 2 -1 1 3 1 3 -1 0
-     * @param n длинна последовательности
-     * @param scanner вспомогательный класс
-     * @return сумму положительных чисел, после которых следует отрицательное число
-     */
-    private static int domzadanie2(int n,  Scanner scanner) {
-        int sum = 0;
-        int b = 0;
-        for (int i = 0; i < n/2; i++) {
-            int a = scanner.nextInt();
-            if (a < 0 ) sum += b;
-            b = scanner.nextInt();
-            if (b < 0 ) sum += a;
+        Integer s_grade = 0;
+        int min_price = 0;
+        String name_product = "";
+        System.out.println("Выберите сорт 1 или 2");
+        while (s_grade != 1 | s_grade != 2) {
+            s_grade = scanner.nextInt();
+            if (s_grade instanceof Integer & s_grade == 1 | s_grade == 2) {
+                for (int i = 0; i < homeWork2List.size(); i++) {
+                    if (s_grade == homeWork2List.get(i).getGrade()) {
+                        min_price = homeWork2List.get(i).getPrice();
+                        name_product = homeWork2List.get(i).getName();
+                    }
+                }
+                for (int i = 0; i < homeWork2List.size(); i++) {
+                    if (min_price > homeWork2List.get(i).getPrice() & s_grade == homeWork2List.get(i).getGrade()) {
+                        min_price = homeWork2List.get(i).getPrice();
+                        name_product = homeWork2List.get(i).getName();
+                    }
+                }
+                System.out.print(name_product + " , " + min_price);
+            } else System.out.println("Вы не ввели 1 или 2");
         }
-        return sum;
     }
 }
