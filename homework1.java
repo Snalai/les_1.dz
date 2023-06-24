@@ -1,29 +1,28 @@
-package org.example.lesson1.HomeWork;
+package org.example.lesson2.HomeWork;
 
 import java.util.Scanner;
 
-public class homework1 {
+public class HomeWork1 {
     public static void main(String[] args) {
-        System.out.println("Введите текст: ");
+        System.out.println("Сколько желаете ввести чисел?");
         Scanner scanner = new Scanner(System.in);
-        String t = scanner.nextLine();
-        System.out.println("Было = " + t);
-        System.out.println("Стало = " + domzadanie1(t));
+        int n = scanner.nextInt();
+        System.out.println("Вводите числа: ");
+        System.out.println("Сумма простых чисел равна: " + domzadanie1(scanner, n));
     }
 
     /**
-     * При наличии входной строки измените порядок слов на противоположный.
-     *
-     * @param t входная строка
-     * @return изменяет порядок слов на противоположный
+     * @apiNote Дана последовательность N целых чисел. Найти сумму простых чисел.
+     * @param scanner вспомогательный класс
+     * @param n длинна последовательности
+     * @return сумма простых чисел sum
      */
-    private static String domzadanie1(String t) {
-        t.trim();
-        String[] words = t.split(" ");
-        int length = 0;
-        String a = "";
-        for (String element : words) length++;
-        for (int i = length - 1; i >= 0; i--) a = a.trim() + " " + words[i];
-        return a;
+    private static int domzadanie1(Scanner scanner, int n) {
+        int sum = 0;
+        for (int i = 0; i < n; i++) {
+            int a = scanner.nextInt();
+            if (a % 2 == 1) sum += a;
+        }
+        return sum;
     }
 }
