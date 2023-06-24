@@ -1,32 +1,31 @@
-package org.example.lesson1.HomeWork;
+package org.example.lesson2.HomeWork;
 
 import java.util.Scanner;
 
-public class homework2 {
+public class HomeWork2 {
     public static void main(String[] args) {
         System.out.println("Сколько желаете ввести чисел?");
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
-        System.out.println("Сумма положительных чисел, после которых следует отрицательное число = " + domzadanie2(n, scanner));
+        System.out.println("Вводите числа: ");
+        System.out.println(domzadanie2(scanner, n));
     }
-
     /**
-     * Дана последовательность целых чисел, оканчивающаяся нулем. Найти сумму положительных чисел, после которых следует отрицательное число.
-     * Пример ввода:
-     * 1 2 1 2 -1 1 3 1 3 -1 0
-     * @param n длинна последовательности
+     * @apiNote Дана последовательность из N целых чисел. Верно ли, что последовательность является возрастающей.
      * @param scanner вспомогательный класс
-     * @return сумму положительных чисел, после которых следует отрицательное число
+     * @param n длинна последовательности
+     * @return определение является ли последовательность возрастающей true/false
      */
-    private static int domzadanie2(int n,  Scanner scanner) {
-        int sum = 0;
-        int b = 0;
-        for (int i = 0; i < n/2; i++) {
-            int a = scanner.nextInt();
-            if (a < 0 ) sum += b;
-            b = scanner.nextInt();
-            if (b < 0 ) sum += a;
+    private static boolean domzadanie2(Scanner scanner, int n) {
+        int a = 0;
+        boolean c = true;
+        for (int i = 0; i < n; i++) {
+            int b = scanner.nextInt();
+            if (b < a) {
+                c = false;
+            }
+            a = b;
         }
-        return sum;
+        return c;
     }
 }
