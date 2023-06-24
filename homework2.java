@@ -1,32 +1,48 @@
-package org.example.lesson1.HomeWork;
+package org.example.lesson4.HomeWork;
 
-import java.util.Scanner;
-
-public class homework2 {
+public class HomeWork2 {
     public static void main(String[] args) {
-        System.out.println("Сколько желаете ввести чисел?");
-        Scanner scanner = new Scanner(System.in);
-        int n = scanner.nextInt();
-        System.out.println("Сумма положительных чисел, после которых следует отрицательное число = " + domzadanie2(n, scanner));
+        String str = "(";
+        System.out.println("homezadanie2(str) = " + homezadanie2(str));
     }
 
     /**
-     * Дана последовательность целых чисел, оканчивающаяся нулем. Найти сумму положительных чисел, после которых следует отрицательное число.
-     * Пример ввода:
-     * 1 2 1 2 -1 1 3 1 3 -1 0
-     * @param n длинна последовательности
-     * @param scanner вспомогательный класс
-     * @return сумму положительных чисел, после которых следует отрицательное число
+     * @apiNote При наличии строки, содержащей только символы , , , , и , определите, является ли входная строка допустимой.s'('')''{''}''['']'
+     * @param str входная строка
+     * @return является  ли строка допустимой
      */
-    private static int domzadanie2(int n,  Scanner scanner) {
-        int sum = 0;
-        int b = 0;
-        for (int i = 0; i < n/2; i++) {
-            int a = scanner.nextInt();
-            if (a < 0 ) sum += b;
-            b = scanner.nextInt();
-            if (b < 0 ) sum += a;
+    private static boolean homezadanie2(String str) {
+        boolean b = false;
+        int f = 0;
+        if (str.length() > 1) {
+            for (int i = 0; i < str.length(); i++) {
+                if (str.charAt(i) == '(') {
+                    if (str.charAt(i + 1) == ')') {
+                        b = true;
+                    } else if (')' == str.charAt(str.length() - 1)) {
+                        b = true;
+                    } else f++;
+                }
+                if (str.charAt(i) == '[') {
+                    if (str.charAt(i + 1) == ']') {
+                        b = true;
+                    } else if (']' == str.charAt(str.length() - 1)) {
+                        b = true;
+                    } else f++;
+                }
+                if (str.charAt(i) == '{') {
+                    if (str.charAt(i + 1) == '}') {
+                        b = true;
+                    } else if ('}' == str.charAt(str.length() - 1)) {
+                        b = true;
+                    } else f++;
+                }
+
+            }
         }
-        return sum;
+        if (f > 0){
+            b = false;
+        }
+        return b;
     }
 }
